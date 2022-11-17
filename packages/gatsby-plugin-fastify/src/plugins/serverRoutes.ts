@@ -34,6 +34,7 @@ export const handleServerRoutes: FastifyPluginAsync<{
 
     // Handle page-data for SSR/DSG routes
     for (const { path, mode } of paths) {
+      if (path.endsWith("*")) continue;
       const pageDataPath = posix.join("/page-data", path, "page-data.json");
 
       fastify.log.debug(`Registering "${pageDataPath}" as "${mode}" route.`);
